@@ -1,7 +1,7 @@
 # Plot time to closest approach in 3D airspace
 
-## Getting this code to run
-I am on debian-like linux, of course, and I installed these libs:
+## Getting the dependencies installed
+I am on a debian-like distro of linux and I installed these libs:
 - python3-numpy
 - python3-matplotlib
 - python3-tk
