@@ -1,3 +1,6 @@
+import matplotlib
+matplotlib.use('Agg')
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -7,14 +10,14 @@ pz10 = 0
 
 vx1 = 1
 vy1 = 0
-vz1 = 10
+vz1 = 0
 
 px20 = 5
 py20 = 0
 pz20 = 0
 
 vx2 = -1
-vy2 = 0
+vy2 = 1
 vz2 = 0
 
 def x1(t):
@@ -45,4 +48,5 @@ d = np.vectorize(lambda t: dist(t))(t)
 
 lines = plt.plot(t, d)
 plt.setp(lines[0], linewidth=4)
-plt.show()
+#plt.show()
+plt.savefig("test.png")
