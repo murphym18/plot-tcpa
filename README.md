@@ -11,3 +11,10 @@ There are probably better ways to setup the project to make getting these libs e
 ```bash
 sudo apt install python3-numpy python3-tk python3-matplotlib
 ```
+
+## How to run the program
+
+Put this in your terminal:
+```bash
+python3 dist.py
+```
