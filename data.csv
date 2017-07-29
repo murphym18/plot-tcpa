@@ -1,2 +1,3 @@
 drone_A_init_position_x,drone_A_init_position_y,drone_A_init_position_z,drone_A_velocity_x,drone_A_velocity_y,drone_A_velocity_z,drone_B_init_position_x,drone_B_init_position_y,drone_B_init_position_z,drone_B_velocity_x,drone_B_velocity_y,drone_B_velocity_z
-1,0,0,-1,-2,-3,-1,0,0,1,0,0
+10,10,0,-8,0,0,-2,11,0,0,1,0
+
