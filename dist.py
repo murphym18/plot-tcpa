@@ -3,35 +3,27 @@ matplotlib.use('Agg')
 
 import matplotlib.pyplot as plt
 import numpy as np
+import csv
+from Test import Test
 
-px10 = 0
-py10 = 0
-pz10 = 0
+data_file = open('data.csv', newline='')
+reader = csv.reader(data_file)
+header = next(reader)
+print(header)
+test1 = Test(next(reader))
+p1 = [0.0, 0.0, 0.0]
+v1 = [1.0, 0.0, 0.0]
 
-vx1 = 1
-vy1 = 0
-vz1 = 0
+p2 = [5.0, 0.0, 0.0]
+v2 = [-1.0, 1.0, 0.0]
 
-px20 = 5
-py20 = 0
-pz20 = 0
+def make_funcs(p, v):
+    def make_func(i):
+        return lambda t: p[i] + t*v[i]
+    return (make_func(0), make_func(1), make_func(2))
 
-vx2 = -1
-vy2 = 1
-vz2 = 0
-
-def x1(t):
-  return px10 + vx1 * t
-def y1(t):
-  return py10 + vy1 * t
-def z1(t):
-  return pz10 + vz1 * t
-def x2(t):
-  return px20 + vx2 * t
-def y2(t):
-  return py20 + vy2 * t
-def z2(t):
-  return pz20 + vz2 * t
+x1, y1, z1 = make_funcs(p1, v1)
+x2, y2, z2 = make_funcs(p2, v2)
 
 def dist2(t):
   dx = x1(t) - x2(t)
@@ -42,11 +34,13 @@ def dist2(t):
 def dist(t):
   return np.sqrt(dist2(t))
 
+def make_test(name, dist_func, tcpa, p1, v1, p2, v2):
+    make_test_docs()
+    make_test_code()
 
 t = np.arange(0, 5, 0.02)
 d = np.vectorize(lambda t: dist(t))(t)
 
 lines = plt.plot(t, d)
 plt.setp(lines[0], linewidth=4)
-#plt.show()
 plt.savefig("test.png")
