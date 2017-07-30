@@ -1,11 +1,19 @@
 import numpy as np
 import math
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 def _make_funcs(p, v):
     def m(i):
         return lambda t: p[i] + t * v[i]
     return m(0), m(1), m(2)
 
+def make_graph(file_path, x, y):
+    lines = plt.plot(x, y)
+    plt.setp(lines[0], linewidth=4)
+    plt.savefig(file_path)
+        
 class Test:
     def __init__(self, data):
         """
@@ -52,9 +60,19 @@ class Test:
         v2 = np.array(self.v2)
         dp = p2 - p1
         dv = v2 - v1
-        print(dp)
-        print(dv)
         return -np.dot(dv, dp) / np.dot(dv, dv)
-        #raise NotImplementedError()
 
+    def find_domain(self):
+        center = self.find_tcpa()
+        step = 0.02
+        return np.arange(0, 2*center+step, step)
+
+    def find_graph_data(self):
+        x = self.find_domain()
+        y = np.vectorize(self.dist)(x)
+        return x, y
+
+    def make_test(self):
+        x, y = self.find_graph_data()
+        make_graph("test1", x , y)
 
